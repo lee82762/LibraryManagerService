@@ -2,6 +2,7 @@ package com.example.librarysystem2.domain.member.entity.dao;
 
 import com.example.librarysystem2.domain.member.entity.Member;
 import com.example.librarysystem2.domain.member.entity.dto.signUpDto;
+import com.example.librarysystem2.domain.member.entity.dto.userUpdateDto;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
@@ -49,6 +50,14 @@ public class MemberDao {
         return results.isEmpty() ? null : results.get(0);
     }
 
+    public void update (userUpdateDto userUpdateDto){
+        jdbcTemplate.update("update  memberst set password=? , name=?, phone=?, regdate=? where email=?",
+                userUpdateDto.getPassword(),userUpdateDto.getName(),userUpdateDto.getPhone(),userUpdateDto.getRegisterDateTime(),userUpdateDto.getEmail());
+    }
 
+    //member delete
+    public void delete (String email){
+        jdbcTemplate.update("delete from memberst where email=?", email);
+    }
 
 }

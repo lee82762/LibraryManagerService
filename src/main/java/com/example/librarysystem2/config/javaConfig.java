@@ -3,6 +3,8 @@ package com.example.librarysystem2.config;
 import com.example.librarysystem2.domain.member.entity.dao.MemberDao;
 import com.example.librarysystem2.domain.member.service.signInService;
 import com.example.librarysystem2.domain.member.service.signUpService;
+import com.example.librarysystem2.domain.member.service.userDeleteService;
+import com.example.librarysystem2.domain.member.service.userUpdateService;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -36,5 +38,13 @@ public class javaConfig {
     @Bean
     public signInService signInService(){
         return new signInService();
+    }
+
+    @Bean
+    public userUpdateService userUpdateService(){ return new userUpdateService(); }
+
+    @Bean
+    public userDeleteService userDeletService(){
+        return new userDeleteService();
     }
 }

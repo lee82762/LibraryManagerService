@@ -14,7 +14,6 @@
     else{
         System.out.println("실패");
         out.println("<script>alert('등록되지 않은 이메일 혹은 패스워드 입니다! '); </script>");
-
         out.println("<script>location.href='/'</script>");
     }
 %>
