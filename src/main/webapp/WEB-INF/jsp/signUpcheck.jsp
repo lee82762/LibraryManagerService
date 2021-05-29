@@ -14,11 +14,14 @@
     if(SIGNUP_OK.equals("success")){
         out.println("<script>alert('회원가입 성공!'); </script>");
         out.println("<script>location.href='/'</script>");
+
     }
     else if(SIGNUP_OK.equals("fail")){
         out.println("<script>alert('이미 있는 아디이 입니다!'); </script>");
         out.println("<script>location.href='/'</script>");
     }
 %>
+
+
 </BODY>
 </HTML>

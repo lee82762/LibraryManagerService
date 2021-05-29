@@ -1,10 +1,8 @@
 package com.example.librarysystem2.config;
 
+import com.example.librarysystem2.domain.member.entity.dao.BookDao;
 import com.example.librarysystem2.domain.member.entity.dao.MemberDao;
-import com.example.librarysystem2.domain.member.service.signInService;
-import com.example.librarysystem2.domain.member.service.signUpService;
-import com.example.librarysystem2.domain.member.service.userDeleteService;
-import com.example.librarysystem2.domain.member.service.userUpdateService;
+import com.example.librarysystem2.domain.member.service.*;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,6 +23,8 @@ public class javaConfig {
         ds.setTimeBetweenEvictionRunsMillis(10 * 1000);
         return ds;
     }
+
+
     @Bean
     public MemberDao memberDao() {
         return new MemberDao(dataSource());
@@ -47,4 +47,13 @@ public class javaConfig {
     public userDeleteService userDeletService(){
         return new userDeleteService();
     }
+
+
+    @Bean
+    public BookDao bookDao() {
+        return new BookDao(dataSource());
+    }
+
+    @Bean
+    public BookListService bookListService(){ return  new BookListService(); }
 }

@@ -49,7 +49,7 @@ public class MemberController {
             session.setAttribute("member", sessionm);
 
         }
-        return "main";
+        return "realmain";
     }
 
 
@@ -75,6 +75,13 @@ public class MemberController {
         }
         return "signIncheck";
 
+    }
+
+    //로그아웃
+    @GetMapping("/signout")
+    public String signout() {
+        sessionm=null;
+        return "signout";
     }
 
     //회원가입

@@ -16,7 +16,7 @@
 <body>
 <div class="container">
     <div class="py-5 text-center">
-        /*<img class="d-block mx-auto mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+        <img class="d-block mx-auto mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
         <h2>회원가입</h2>
         <p class="lead">회원가입 이후 서비스 가능</p>
     </div>
@@ -24,7 +24,6 @@
     <div class="col-md-12 order-md-1">
         <h4 class="mb-3">회원정보</h4>
         <form class="needs-validation" action="/signUpcheck" method="POST">
-
 
             <div class="mb-3">
                 <label for="email">이메일</label>
@@ -52,7 +51,7 @@
 
             <div class="mb-3">
                 <label for="phone">핸드폰번호</label>
-                <input type="text" class="form-control" id="phone" placeholder="you@example.com" name="phone">
+                <input type="text" class="form-control" id="phone" placeholder="" name="phone">
                 <div class="invalid-feedback">올바른 이메일을 입력하세요.</div>
             </div>
             <hr class="mb-4">

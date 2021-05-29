@@ -1,25 +1,12 @@
 <%@ page import="com.example.librarysystem2.domain.member.entity.Member" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+
 <html>
 <head>
     <title>Title</title>
 </head>
 <body>
-
-<form class="needs-validation" action="/signin" method="GET">
-    <button class="w-100 btn btn-lg btn-primary btn-block" type="submit">로그인</button>
-</form>
-<form class="needs-validation" action="/signup" method="GET">
-    <button class="w-100 btn btn-lg btn-primary btn-block" type="submit">회원가입</button>
-</form>
-
-<form class="needs-validation" action="/userUpdate" method="GET">
-    <button class="w-100 btn btn-lg btn-primary btn-block" type="submit">회원수정</button>
-</form>
-
-<form class="needs-validation" action="/userDelete" method="POST">
-    <button class="w-100 btn btn-lg btn-primary btn-block" type="submit">회원탈퇴</button>
-</form>
 
 <%
     session=request.getSession();
