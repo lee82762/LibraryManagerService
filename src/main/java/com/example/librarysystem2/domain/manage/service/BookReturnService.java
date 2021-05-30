@@ -1,7 +1,7 @@
-package com.example.librarysystem2.domain.member.service;
+package com.example.librarysystem2.domain.manage.service;
 
-import com.example.librarysystem2.domain.member.entity.Book;
-import com.example.librarysystem2.domain.member.entity.dao.BookDao;
+import com.example.librarysystem2.domain.manage.entity.Book;
+import com.example.librarysystem2.domain.manage.entity.dao.BookDao;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;

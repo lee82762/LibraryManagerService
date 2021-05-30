@@ -1,4 +1,4 @@
-package com.example.librarysystem2.domain.member.entity;
+package com.example.librarysystem2.domain.manage.entity;
 
 import lombok.Builder;
 import lombok.Getter;

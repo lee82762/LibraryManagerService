@@ -1,4 +1,4 @@
-package com.example.librarysystem2.domain.member.entity.dto;
+package com.example.librarysystem2.domain.manage.entity.dto;
 
 import lombok.Getter;
 import lombok.Setter;

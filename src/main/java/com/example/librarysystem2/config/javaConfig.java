@@ -1,8 +1,8 @@
 package com.example.librarysystem2.config;
 
-import com.example.librarysystem2.domain.member.entity.dao.BookDao;
-import com.example.librarysystem2.domain.member.entity.dao.MemberDao;
-import com.example.librarysystem2.domain.member.service.*;
+import com.example.librarysystem2.domain.manage.entity.dao.BookDao;
+import com.example.librarysystem2.domain.manage.entity.dao.MemberDao;
+import com.example.librarysystem2.domain.manage.service.*;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

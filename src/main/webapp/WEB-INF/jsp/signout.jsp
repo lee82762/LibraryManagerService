@@ -1,4 +1,4 @@
-<%@ page import="com.example.librarysystem2.domain.member.entity.Member" %><%--
+<%@ page import="com.example.librarysystem2.domain.manage.entity.Member" %><%--
   Created by IntelliJ IDEA.
   User: 이재범
   Date: 2021-05-28

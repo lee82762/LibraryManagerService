@@ -1,6 +1,6 @@
-package com.example.librarysystem2.domain.member.entity.dao;
+package com.example.librarysystem2.domain.manage.entity.dao;
 
-import com.example.librarysystem2.domain.member.entity.Book;
+import com.example.librarysystem2.domain.manage.entity.Book;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 

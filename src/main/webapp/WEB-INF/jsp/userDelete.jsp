@@ -1,4 +1,4 @@
-<%@ page import="com.example.librarysystem2.domain.member.entity.Member" %><%--
+<%@ page import="com.example.librarysystem2.domain.manage.entity.Member" %><%--
   Created by IntelliJ IDEA.
   User: 이재범
   Date: 2021-05-28
@@ -16,7 +16,7 @@
     session=request.getSession(true);
     Member memberInfo = (Member) session.getAttribute("member");
 
-    
+
     String DELETE_OK = (String) request.getAttribute("DELETE_OK");
     out.println(memberInfo.getName());
 

@@ -1,13 +1,13 @@
-package com.example.librarysystem2.domain.member.controller;
+package com.example.librarysystem2.domain.manage.controller;
 
-import com.example.librarysystem2.domain.member.entity.Member;
-import com.example.librarysystem2.domain.member.entity.dto.signInDto;
-import com.example.librarysystem2.domain.member.entity.dto.signUpDto;
-import com.example.librarysystem2.domain.member.entity.dto.userUpdateDto;
-import com.example.librarysystem2.domain.member.service.signInService;
-import com.example.librarysystem2.domain.member.service.signUpService;
-import com.example.librarysystem2.domain.member.service.userDeleteService;
-import com.example.librarysystem2.domain.member.service.userUpdateService;
+import com.example.librarysystem2.domain.manage.entity.Member;
+import com.example.librarysystem2.domain.manage.entity.dto.signInDto;
+import com.example.librarysystem2.domain.manage.entity.dto.signUpDto;
+import com.example.librarysystem2.domain.manage.entity.dto.userUpdateDto;
+import com.example.librarysystem2.domain.manage.service.signInService;
+import com.example.librarysystem2.domain.manage.service.signUpService;
+import com.example.librarysystem2.domain.manage.service.userDeleteService;
+import com.example.librarysystem2.domain.manage.service.userUpdateService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

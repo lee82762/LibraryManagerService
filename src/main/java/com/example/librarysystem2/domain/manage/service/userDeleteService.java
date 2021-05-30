@@ -1,6 +1,6 @@
-package com.example.librarysystem2.domain.member.service;
+package com.example.librarysystem2.domain.manage.service;
 
-import com.example.librarysystem2.domain.member.entity.dao.MemberDao;
+import com.example.librarysystem2.domain.manage.entity.dao.MemberDao;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class userDeleteService {

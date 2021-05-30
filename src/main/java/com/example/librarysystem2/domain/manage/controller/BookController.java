@@ -1,10 +1,10 @@
-package com.example.librarysystem2.domain.member.controller;
+package com.example.librarysystem2.domain.manage.controller;
 
-import com.example.librarysystem2.domain.member.entity.Book;
-import com.example.librarysystem2.domain.member.entity.Member;
-import com.example.librarysystem2.domain.member.service.BookListService;
-import com.example.librarysystem2.domain.member.service.BookRentalService;
-import com.example.librarysystem2.domain.member.service.BookReturnService;
+import com.example.librarysystem2.domain.manage.entity.Book;
+import com.example.librarysystem2.domain.manage.entity.Member;
+import com.example.librarysystem2.domain.manage.service.BookListService;
+import com.example.librarysystem2.domain.manage.service.BookRentalService;
+import com.example.librarysystem2.domain.manage.service.BookReturnService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

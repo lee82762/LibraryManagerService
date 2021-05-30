@@ -1,8 +1,8 @@
-package com.example.librarysystem2.domain.member.entity.dao;
+package com.example.librarysystem2.domain.manage.entity.dao;
 
-import com.example.librarysystem2.domain.member.entity.Member;
-import com.example.librarysystem2.domain.member.entity.dto.signUpDto;
-import com.example.librarysystem2.domain.member.entity.dto.userUpdateDto;
+import com.example.librarysystem2.domain.manage.entity.Member;
+import com.example.librarysystem2.domain.manage.entity.dto.signUpDto;
+import com.example.librarysystem2.domain.manage.entity.dto.userUpdateDto;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
