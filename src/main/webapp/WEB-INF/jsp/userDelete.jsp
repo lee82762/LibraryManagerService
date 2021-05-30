@@ -16,7 +16,7 @@
     session=request.getSession(true);
     Member memberInfo = (Member) session.getAttribute("member");
 
-
+    
     String DELETE_OK = (String) request.getAttribute("DELETE_OK");
     out.println(memberInfo.getName());
 

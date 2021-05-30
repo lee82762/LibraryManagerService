@@ -13,7 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </head>
 <body class="text-center">
-<form class="needs-validation" action="/signIncheck" method="POST">>
+<form class="needs-validation" action="/signIncheck" method="POST">
     <div class="py-5 text-center">
         <h2>로그인</h2>
         <p class="lead">로그인 이후 서비스 가능</p>

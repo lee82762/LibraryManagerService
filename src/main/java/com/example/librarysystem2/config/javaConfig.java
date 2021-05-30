@@ -56,4 +56,12 @@ public class javaConfig {
 
     @Bean
     public BookListService bookListService(){ return  new BookListService(); }
+
+    @Bean
+    public BookRentalService bookRentalService(){
+        return new BookRentalService();
+    }
+
+    @Bean
+    public BookReturnService bookReturnService() { return  new BookReturnService(); }
 }

@@ -6,17 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-public class BookListService {
-
+public class BookReturnService {
     @Autowired
     private BookDao bookDao;
 
-    public List<Book> bookList(){
-        return bookDao.selectAll();
+    public List<Book> mylist(String user_id){
+        return bookDao.selectByUserid(user_id);
     }
 
+    public void bookreturn(String book_name){
+        bookDao.update1(book_name);
 
-    public List<Book> bookList2(String bookinfo, String jogun){
-        return bookDao.selectByEmail(bookinfo,jogun);
     }
 }

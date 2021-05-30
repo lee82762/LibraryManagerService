@@ -75,7 +75,6 @@
 
 </head>
 <body>
-
 <ul class="navi">
   <%--  <li><a href="#">도서</a>
         <ul>
@@ -85,13 +84,14 @@
             <li><a href="#">도서반납</a></li>
         </ul>
     </li>--%>
-
     <li><a href="/booklistcheck">도서리스트</a>
-    <li><a href="#">도서대출</a></li>
+    <li><a href="/bookrental">도서대출</a></li>
     <li><a href="#">도서예약</a></li>
-    <li><a href="#">도서반납</a></li>
+    <li><a href="/bookreturn">도서반납</a></li>
     <li><a href="#">마이페이지</a></li>
 </ul>
+
+
 
 <%--
 <form class="needs-validation" action="/booklistcheck" method="GET">

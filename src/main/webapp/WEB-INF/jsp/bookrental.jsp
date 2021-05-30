@@ -5,23 +5,13 @@
 <html>
 <head> <meta charset="EUC-KR"> </head>
 <body>
-<h1> 책정보 </h1>
+<h1> 도서 대출 </h1>
 <script>
     function btn(){
         alert('버튼이 클릭되었습니다');
 
     }
 </script>
-
-<%--<form action="/check" method="post">
-    <input type="text" name="bookinfo">검색<br>
-    <input type="checkbox" name="lang" value="Java">자바
-    <input type="checkbox" name="lang" value="C">C
-    <input type="checkbox" name="lang" value="Cpp">C++
-    <input type="checkbox" name="lang" value="Cs">C#
-    <button class="btn btn-primary btn-lg btn-block" type="submit">제출</button>
-</form>--%>
-
 
 <form action="/check" method="post">
     <td>
@@ -38,9 +28,12 @@
 
 <ul>
     <c:forEach var="book" items="${booklist}" varStatus="status">
+        <form action="/bookrentalcheck" method="post">
         <li> ${status.index+1} :${book.book_name}
-        <button onclick="javascript:btn()"  value="${book.book_name}"> 자세히보기 </button>
+            <button name="bookname" value="${book.book_name}"> 대출 </button>
+
         </li>
+        </form>
     </c:forEach>
 </ul>
 <%--<img src=${book.book_img} width="500", height="250" >--%>
