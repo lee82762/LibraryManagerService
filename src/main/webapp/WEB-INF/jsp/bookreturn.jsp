@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.example.librarysystem2.domain.manage.entity.Member" %><%--
   Created by IntelliJ IDEA.
   User: 이재범
   Date: 2021-05-30
@@ -13,6 +13,18 @@
 </head>
 <body>
 <h1> 도서 반납 </h1>
+
+<%
+    session=request.getSession();
+    session=request.getSession(true);
+    Member member = (Member)session.getAttribute("member");
+
+
+    if(member==null){
+        out.println("<script>alert('로그인 하세요!'); </script>");
+        out.println("<script>location.href='/signin'</script>");
+    }
+%>
 <ul>
     <c:forEach var="book" items="${mybook}" varStatus="status">
         <form action="/bookreturncheck" method="post">
@@ -22,6 +34,6 @@
         </form>
     </c:forEach>
 </ul>
-
+<button onclick="location.href='/'"> 돌아가기 </button>
 </body>
 </html>

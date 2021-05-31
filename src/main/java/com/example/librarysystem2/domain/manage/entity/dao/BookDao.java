@@ -16,7 +16,7 @@ public class BookDao {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-
+    //전체 도서 출력
     public List<Book> selectAll() {
         List<Book> results = jdbcTemplate.query("select * from BOOK",
                 (ResultSet rs, int rowNum) -> {
@@ -24,7 +24,7 @@ public class BookDao {
                             rs.getString("PUBLISHER"), rs.getString("GENRE"),
                             rs.getString("BOOK_NUM"), rs.getString("BOOK_STATE"),
                             rs.getString("BOOK_IMG"),rs.getTimestamp("BOOKREGDATE").toLocalDateTime(),
-                            rs.getString("USER_ID"), rs.getInt("COUNT"));
+                            rs.getString("USER_ID"), rs.getInt("CNT"));
                     book.setBook_id(rs.getLong("BOOK_ID"));
                     return book;
                 });
@@ -32,6 +32,8 @@ public class BookDao {
     }
 
 
+
+    //해당도서 대여 가능 상태 출력
     public String selectfindAll(String bookname) {
         List<Book> results = jdbcTemplate.query("select * from BOOK where book_name=?" ,
                 (ResultSet rs, int rowNum) -> {
@@ -39,7 +41,7 @@ public class BookDao {
                             rs.getString("PUBLISHER"), rs.getString("GENRE"),
                             rs.getString("BOOK_NUM"), rs.getString("BOOK_STATE"),
                             rs.getString("BOOK_IMG"),rs.getTimestamp("BOOKREGDATE").toLocalDateTime(),
-                            rs.getString("USER_ID"), rs.getInt("COUNT"));
+                            rs.getString("USER_ID"), rs.getInt("CNT"));
                     book.setBook_id(rs.getLong("BOOK_ID"));
                     return book;
                 },bookname);
@@ -47,6 +49,23 @@ public class BookDao {
     }
 
 
+    //해당 도서 조회수 출력
+    public int selectfindcnt(String bookname) {
+        List<Book> results = jdbcTemplate.query("select * from BOOK where book_name=?" ,
+                (ResultSet rs, int rowNum) -> {
+                    Book book = new Book( rs.getString("BOOK_NAME"), rs.getString("AUTHOR"),
+                            rs.getString("PUBLISHER"), rs.getString("GENRE"),
+                            rs.getString("BOOK_NUM"), rs.getString("BOOK_STATE"),
+                            rs.getString("BOOK_IMG"),rs.getTimestamp("BOOKREGDATE").toLocalDateTime(),
+                            rs.getString("USER_ID"), rs.getInt("CNT"));
+                    book.setBook_id(rs.getLong("BOOK_ID"));
+                    return book;
+                },bookname);
+        return results.get(0).getCnt();
+    }
+
+
+    //검색 조건에 맞는 도서리스트
     public List<Book> selectByEmail(String bookinfo,String jogun) {
         List<Book> results = jdbcTemplate.query("select * from BOOK where "+jogun+" like '%" + bookinfo +"%'",
                 new RowMapper<Book>() {
@@ -56,7 +75,7 @@ public class BookDao {
                                 rs.getString("PUBLISHER"), rs.getString("GENRE"),
                                 rs.getString("BOOK_NUM"), rs.getString("BOOK_STATE"),
                                 rs.getString("BOOK_IMG"),rs.getTimestamp("BOOKREGDATE").toLocalDateTime(),
-                                rs.getString("USER_ID"), rs.getInt("COUNT"));
+                                rs.getString("USER_ID"), rs.getInt("CNT"));
                         book.setBook_id(rs.getLong("BOOK_ID"));
                         return book;
                     }
@@ -65,12 +84,14 @@ public class BookDao {
     }
 
 
-    public void update (String book_name,String user_id){
-        jdbcTemplate.update("update book set book_state=? ,user_id=? where book_name=?",
-                "불가능",user_id,book_name);
+    //도서 대출
+    public void update (String book_name,String user_id,int cnt){
+        jdbcTemplate.update("update book set book_state=? ,user_id=? ,cnt=? where book_name=?",
+                "불가능",user_id,cnt+1,book_name);
     }
 
 
+    //로그인한 사용자 도서 대여 목록
     public List<Book> selectByUserid(String userid) {
         List<Book> results = jdbcTemplate.query("select * from BOOK where user_id=?",
                 new RowMapper<Book>() {
@@ -80,7 +101,7 @@ public class BookDao {
                                 rs.getString("PUBLISHER"), rs.getString("GENRE"),
                                 rs.getString("BOOK_NUM"), rs.getString("BOOK_STATE"),
                                 rs.getString("BOOK_IMG"),rs.getTimestamp("BOOKREGDATE").toLocalDateTime(),
-                                rs.getString("USER_ID"), rs.getInt("COUNT"));
+                                rs.getString("USER_ID"), rs.getInt("CNT"));
                         book.setBook_id(rs.getLong("BOOK_ID"));
                         return book;
                     }
@@ -88,7 +109,9 @@ public class BookDao {
         return results;
     }
 
-    public void update1 (String book_name){
+
+    //도서 반납
+   public void update1 (String book_name){
         jdbcTemplate.update("update book set book_state=? ,user_id=? where book_name=?",
                 "가능",null,book_name);
     }

@@ -19,10 +19,10 @@ public class Book {
     private String book_img;
     private LocalDateTime bookregDateTime;
     private String user_id;
-    private Integer count;
+    private int cnt;
 
     @Builder
-    public Book(String book_name,String author, String publisher,String genre,String book_num, String book_state,String book_img, LocalDateTime bookregDateTime,String user_id,Integer count){
+    public Book(String book_name,String author, String publisher,String genre,String book_num, String book_state,String book_img, LocalDateTime bookregDateTime,String user_id,int cnt){
         this.book_name=book_name;
         this.author=author;
         this.publisher=publisher;
@@ -32,7 +32,7 @@ public class Book {
         this.book_img=book_img;
         this.bookregDateTime=bookregDateTime;
         this.user_id=user_id;
-        this.count=count;
+        this.cnt=cnt;
     }
 
 }

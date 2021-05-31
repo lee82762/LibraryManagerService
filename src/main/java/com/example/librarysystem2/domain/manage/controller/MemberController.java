@@ -36,18 +36,14 @@ public class MemberController {
 
     static Member sessionm;
 
+    //메인 페이지
     @GetMapping("/")
     public String Main(HttpServletRequest request){
         HttpSession session=request.getSession();
-
-
         if(sessionm==null){
-
         }
         else {
-            //sessionm.getEmail();
             session.setAttribute("member", sessionm);
-
         }
         return "realmain";
     }
@@ -58,30 +54,33 @@ public class MemberController {
     public String signinpage(){
         return "signin";
     }
-
+    //로그인 확인
     @PostMapping("/signIncheck")
     public String signIn(Model model, signInDto signInDto, HttpServletRequest request){
         Member member=signInService.signIn(signInDto);
 
+        //db에 email이 없을때
+        if(member==null){
 
-
-        if(signInDto.getEmail().equals(member.getEmail())&&signInDto.getPassword().equals(member.getPassword())){
-            model.addAttribute("SIGNIN_OK","success");
-            sessionm=member;
-
+            model.addAttribute("SIGNIN_OK","failid");
         }
-        else if(!signInDto.getEmail().equals(member.getEmail()) || !signInDto.getPassword().equals(member.getPassword())){
-            model.addAttribute("SIGNIN_OK","fail");
+        //db에 email이 있을때
+        else {
+             //db에 값이랑 email,password 같을때
+            if (signInDto.getEmail().equals(member.getEmail()) && signInDto.getPassword().equals(member.getPassword())) {
+                model.addAttribute("SIGNIN_OK", "success");
+                sessionm = member;
+
+            }
+            //db에 값이랑 email은 같고 password가 다를때
+            else if (signInDto.getEmail().equals(member.getEmail()) && !signInDto.getPassword().equals(member.getPassword())) {
+                System.out.println("2");
+                model.addAttribute("SIGNIN_OK", "failpwd");
+            }
         }
+
         return "signIncheck";
 
-    }
-
-    //로그아웃
-    @GetMapping("/signout")
-    public String signout() {
-        sessionm=null;
-        return "signout";
     }
 
     //회원가입
@@ -90,7 +89,7 @@ public class MemberController {
         return "signup";
     }
 
-
+    //회원가입 확인
     @PostMapping("/signUpcheck")
     public String signUp(signUpDto signUpDto, Model model){
         if(signUpService.check(signUpDto)==false){
@@ -107,13 +106,12 @@ public class MemberController {
 
 
     //회원 수정 페이지
-
     @GetMapping("/userUpdate")
     public String userUpdatepage(){
         return "userUpdate";
     }
 
-
+    //회원 수정 확인
     @PostMapping("/userUpdatecheck")
     public String userUpdate(userUpdateDto userUpdateDto, Model model){
         LocalDateTime time= LocalDateTime.now();
@@ -129,15 +127,19 @@ public class MemberController {
     }
 
 
+    //로그아웃
+    @GetMapping("/signout")
+    public String signout() {
+        sessionm=null;
+        return "signout";
+    }
+
+    //회원 탈퇴
     @PostMapping("/userDelete")
     public String userDelete(HttpServletRequest request,Model model){
-
         userDeleteService.delete(sessionm.getEmail());
-
         model.addAttribute("DELETE_OK","success");
         sessionm=null;
-
-
         return "userDelete";
     }
 

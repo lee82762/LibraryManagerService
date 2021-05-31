@@ -36,6 +36,8 @@
         </form>
     </c:forEach>
 </ul>
+<button onclick="location.href='/'"> 돌아가기 </button>
+
 <%--<img src=${book.book_img} width="500", height="250" >--%>
 <%
 

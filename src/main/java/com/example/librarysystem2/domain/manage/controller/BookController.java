@@ -47,18 +47,20 @@ public class BookController {
         return "bookrental";
     }
 
-    //도서 대출
+    //도서 대출 확인
     @PostMapping("/bookrentalcheck")
     public String bookrentalcheck(Model model, HttpServletRequest request){
         HttpSession session = request.getSession();
         Member member = (Member)session.getAttribute("member");
+
         String bookname=request.getParameter("bookname");
         String state=bookRentalService.bookList1(bookname);
+        int cnt=bookRentalService.bookList2(bookname);
 
         if(state.equals("가능")&&member!=null){
             if(member!=null) {
                 String user_id = member.getName();
-                bookRentalService.bookrent(bookname,user_id);
+                bookRentalService.bookrent(bookname,user_id,cnt);
             }
             model.addAttribute("RENTAL_OK","success");
         }
@@ -89,7 +91,7 @@ public class BookController {
         }*/
         return "bookreturn";
     }
-
+    //도서 반납 확인
     @PostMapping("/bookreturncheck")
     public String bookreturncheck(Model model,HttpServletRequest request){
         HttpSession session = request.getSession();
