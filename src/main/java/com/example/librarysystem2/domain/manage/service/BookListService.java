@@ -19,4 +19,8 @@ public class BookListService {
     public List<Book> bookList2(String bookinfo, String jogun){
         return bookDao.selectByEmail(bookinfo,jogun);
     }
+
+    public List<Book> bookList3(String genre) {
+
+        return bookDao.selectBygenre(genre); }
 }

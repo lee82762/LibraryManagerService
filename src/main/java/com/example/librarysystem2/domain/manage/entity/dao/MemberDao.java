@@ -28,7 +28,6 @@ public class MemberDao {
     }
 
     public void insert (signUpDto signUpDto){
-
         jdbcTemplate.update("insert memberst (email,password,name,phone,regdate) values (?,?,?,?,?)",
                 signUpDto.getEmail(), signUpDto.getPassword(), signUpDto.getName(), signUpDto.getPhone(),signUpDto.getRegisterDateTime());
     }

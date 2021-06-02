@@ -5,6 +5,12 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
 <body>
+<%
+    session=request.getSession();
+    session=request.getSession(true);
+    Member member = (Member)session.getAttribute("member");
+
+%>
 <%--        mainhome header--%>
 <nav class="navbar navbar-expand-lg navbar-light " style="background-color: #808080; color:white;">
     <div class="container">
@@ -17,6 +23,7 @@
             </ul>
         </div>
     </div>
+    <marquee  width="300" height="50"> <% if(member!=null) out.print(member.getName()+"님이 로그인 중입니다. "); %> </marquee>
 
 
 

@@ -64,4 +64,7 @@ public class javaConfig {
 
     @Bean
     public BookReturnService bookReturnService() { return  new BookReturnService(); }
+
+    @Bean
+    public BookReserService bookReserService(){return  new BookReserService(); }
 }

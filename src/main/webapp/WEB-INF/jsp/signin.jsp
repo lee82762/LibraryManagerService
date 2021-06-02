@@ -91,10 +91,6 @@
     <button class="btn btn-primary" type="submit">로그인</button>
     <button class="btn btn-primary" type="submit" onclick="location.href='/'">돌아가기</button>
 </form>
-
-
-
-
 </body>
 </html>
 

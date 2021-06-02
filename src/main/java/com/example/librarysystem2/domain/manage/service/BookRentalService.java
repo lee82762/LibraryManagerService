@@ -9,9 +9,7 @@ public class BookRentalService {
     private BookDao bookDao;
 
     //find book_state
-    public String bookList1(String bookinfo){
-        return bookDao.selectfindAll(bookinfo);
-    }
+    public String bookList1(String bookinfo){ return bookDao.selectfindstate(bookinfo); }
 
     //find cnt
     public int bookList2(String bookinfo){return bookDao.selectfindcnt(bookinfo); }

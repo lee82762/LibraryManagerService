@@ -1,75 +1,8 @@
-<%@ page import="com.example.librarysystem2.domain.manage.entity.Member" %><%--<%@ page import="com.example.librarysystem2.domain.manage.entity.Member" %>
-<%@ page contentType="text/html; charset=utf-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head> <meta charset="EUC-KR"> </head>
-<body>
-<h1> 책정보 </h1>
-<script>
-    function btn(){
-        alert('버튼이 클릭되었습니다');
-
-    }
-</script>
-
-&lt;%&ndash;<form action="/check" method="post">
-    <input type="text" name="bookinfo">검색<br>
-    <input type="checkbox" name="lang" value="Java">자바
-    <input type="checkbox" name="lang" value="C">C
-    <input type="checkbox" name="lang" value="Cpp">C++
-    <input type="checkbox" name="lang" value="Cs">C#
-    <button class="btn btn-primary btn-lg btn-block" type="submit">제출</button>
-</form>&ndash;%&gt;
-
-
-<form action="/check" method="post">
-    <td>
-        <input type="text" name="info">
-        <input type="submit" value="검색">
-    </td>
-    <td>
-        <input type="checkbox" name="item" value="book_name">제목
-        <input type="checkbox" name="item" value="author">글쓴이
-        <input type="checkbox" name="item" value="publisher">출판사
-        <input type="checkbox" name="item" value="genre">장르
-    </td>
-</form>
-
-<ul>
-    <c:forEach var="book" items="${booklist}" varStatus="status">
-        <li> ${status.index+1} :${book.book_name}
-        <button onclick="javascript:btn()"  value="${book.book_name}"> 자세히보기 </button>
-        </li>
-    </c:forEach>
-</ul>
-
-<button class="btn btn-primary" type="submit" onclick="location.href='/'">돌아가기</button>
-&lt;%&ndash;<img src=${book.book_img} width="500", height="250" >&ndash;%&gt;
-<%
-
-
-    session=request.getSession();
-    session=request.getSession(true);
-    Member member = (Member)session.getAttribute("member");
-
-
-    if(member!=null){
-        out.println("session값: "+member.getEmail());
-        out.println("session값: "+member.getName());
-        out.println("session값: "+member.getPhone());
-    }
-
-
-%>
-</body>
-</html>--%>
-
 <%--
   Created by IntelliJ IDEA.
-  User: 남예주
-  Date: 2021-05-29
-  Time: 오후 10:13
+  User: 이재범
+  Date: 2021-06-01
+  Time: 오후 11:44
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html; charset=utf-8" %>
@@ -150,71 +83,27 @@
 
             </li>
         </ul>
- <%--       <div class="float-right" style= "display: flex; justify-content: right;">
-            <form class="needs-validation" action="/signin" method="GET">
-            <button type="button" class="btn btn-outline-primary float-right" onClick="location.href='/signin'">로그인</button>
-            </form>
-
-            <form class="needs-validation" action="/signup" method="GET">
-            <button type="button" class="btn btn-primary float-right" onClick="location.href='/signup'">회원가입</button>
-            </form>
-
-        </div>--%>
-        <%
-            session=request.getSession();
-            //session=request.getSession(true);
-            Member memberInfo = (Member) session.getAttribute("member");
-            if(memberInfo==null){
-
-        %>
-        <form class="needs-validation" action="/signin" method="GET">
-            <button class="btn btn-primary float-right" type="submit">로그인</button>
-        </form>
-        <form class="needs-validation" action="/signup" method="GET">
-            <button class="btn btn-primary float-right" type="submit">회원가입</button>
-        </form>
-
-        <% }else{ %>
-
-        <form class="needs-validation" action="/signout" method="GET">
-            <button class="btn btn-primary float-right" type="submit">로그아웃</button>
-        </form>
-
-
-        <form class="needs-validation" action="/userUpdate" method="GET">
-            <button class="btn btn-primary float-right" type="submit">회원수정</button>
-        </form>
-
-        <form class="needs-validation" action="/userDelete" method="POST">
-            <button class="btn btn-primary float-right" type="submit">회원탈퇴</button>
-        </form>
-
-        <% } %>
+        <div class="float-right" style= "display: flex; justify-content: right;">
+            <button type="button" class="btn btn-outline-primary float-right">Login</button>
+            <button type="button" class="btn btn-primary float-right">Sign-up</button>
+        </div>
     </div>
 </nav>
-
-
-
 <div class="container-fluid">
-
     <div class="row">
-
-
         <div class="col-md-3">
-
             <div class="panel panel-info">
-
                 <div class="panel-heading">
                     <h2 class="panel-title"> 도서 </h2>
                 </div>
                 <form action="/check1" method="post">
-                <ul class="list-group">
-                    <button class="list-group-item" name="item" value="국내소설">국내소설 </button>
-                    <button class="list-group-item" name="item" value="외국소설"> 해외소설 </button>
-                    <button class="list-group-item" name="item" value="경제경영">경제경영</button>
-                    <button class="list-group-item" name="item" value="인문과학"> 인문과학 </button>
-                    <button class="list-group-item" name="item" value="만화"> 만화 </button>
-                </ul>
+                    <ul class="list-group">
+                        <button class="list-group-item" name="item" value="국내소설">국내소설 </button>
+                        <button class="list-group-item" name="item" value="외국소설"> 해외소설 </button>
+                        <button class="list-group-item" name="item" value="경제경영">경제경영</button>
+                        <button class="list-group-item" name="item" value="인문과학"> 인문과학 </button>
+                        <button class="list-group-item" name="item" value="만화"> 만화 </button>
+                    </ul>
                 </form>
 
             </div>
@@ -227,19 +116,18 @@
                     <input type="submit" value="검색">
                 </td>
                 <td>
+                    <input type="hidden" name="genre" value="${genre}">
                     <input type="checkbox" name="item" value="book_name" onclick="oneCheckbox(this)">제목
                     <input type="checkbox" name="item" value="author" onclick="oneCheckbox(this)">글쓴이
                     <input type="checkbox" name="item" value="publisher" onclick="oneCheckbox(this)">출판사
                     <input type="checkbox" name="item" value="genre" onclick="oneCheckbox(this)">장르
                 </td>
             </form>
-
             <table class="table">
                 <tbody>
 
                 <tr>
-                    <c:forEach var="book" items="${booklist}" varStatus="status">
-                        <c:if test="${book.genre eq '국내소설'}">
+                    <c:forEach var="book" items="${booklist3}" varStatus="status">
                             <figure class="figure">
                                 <img src=${book.book_img} width="151.5", height="200" hspace="10">
                                 <figcaption class="figure-caption">
@@ -249,7 +137,6 @@
                                     대여: <button>${book.book_state}</button>
                                 </figcaption>
                             </figure>
-                        </c:if>
                     </c:forEach>
                 </tr>
 
@@ -263,9 +150,5 @@
 </div>
 </div>
 
-<%--</form>--%>
-
 </body>
 </html>
-
-

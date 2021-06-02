@@ -11,11 +11,11 @@
     }
     else if(SIGNIN_OK.equals("failid")){
         out.println("<script>alert('등록되지 않은 이메일 입니다!'); </script>");
-        out.println("<script>location.href='/'</script>");
+        out.println("<script>location.href='/signin'</script>");
     }
     else if(SIGNIN_OK.equals("failpwd")){
         out.println("<script>alert('등록되지 않은 패스워드 입니다!'); </script>");
-        out.println("<script>location.href='/'</script>");
+        out.println("<script>location.href='/signin'</script>");
     }
 %>
 
