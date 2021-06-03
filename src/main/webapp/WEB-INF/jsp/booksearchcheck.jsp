@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.example.librarysystem2.domain.manage.entity.Member" %><%--
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
@@ -69,7 +69,8 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
     <a class="navbar-brand" href="#">
-        <img src="${pageContext.request.contextPath}/image/libraryIconjpg.jpg" width="50" height="50" alt="">
+        <a href="/"><img src="${pageContext.request.contextPath}/image/libraryIconjpg.jpg" width="50" height="50" alt="" >
+        </a>
         Library System
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -79,16 +80,16 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">검색</a>
+                <a class="nav-link" href="/booklistcheck">검색</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">대출</a>
+                <a class="nav-link" href="/bookreturn">대출</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">반납</a>
+                <a class="nav-link" href="/bookreturn">반납</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">예약</a>
+                <a class="nav-link" href="/bookreser">예약</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle"  id="navbarDropdown" role="button" data-toggle="dropdown" >
@@ -105,10 +106,37 @@
 
             </li>
         </ul>
-        <div class="float-right" style= "display: flex; justify-content: right;">
-            <button type="button" class="btn btn-outline-primary float-right">Login</button>
-            <button type="button" class="btn btn-primary float-right">Sign-up</button>
-        </div>
+
+        <%
+            session=request.getSession();
+            //session=request.getSession(true);
+            Member memberInfo = (Member) session.getAttribute("member");
+            if(memberInfo==null){
+
+        %>
+        <form class="needs-validation" action="/signin" method="GET">
+            <button class="btn btn-primary float-right" type="submit">로그인</button>
+        </form>
+        <form class="needs-validation" action="/signup" method="GET">
+            <button class="btn btn-primary float-right" type="submit">회원가입</button>
+        </form>
+
+        <% }else{ %>
+
+        <form class="needs-validation" action="/signout" method="GET">
+            <button class="btn btn-primary float-right" type="submit">로그아웃</button>
+        </form>
+        <%--
+
+                <form class="needs-validation" action="/userUpdate" method="GET">
+                    <button class="btn btn-primary float-right" type="submit">회원수정</button>
+                </form>
+
+                <form class="needs-validation" action="/userDelete" method="POST">
+                    <button  type="submit">회원탈퇴</button>
+                </form>--%>
+
+        <% } %>
     </div>
 </nav>
 <div class="container-fluid">
@@ -137,6 +165,7 @@
                     <input type="submit" value="검색">
                 </td>
                 <td>
+                    <input type="hidden" name="check" value="${check}">
                     <input type="checkbox" name="item" value="book_name" onclick="oneCheckbox(this)">제목
                     <input type="checkbox" name="item" value="author" onclick="oneCheckbox(this)">글쓴이
                     <input type="checkbox" name="item" value="publisher" onclick="oneCheckbox(this)">출판사
@@ -158,6 +187,13 @@
                                 출판사: ${book.publisher}<br>
                                 대여: <button>${book.book_state}</button>
                             </figcaption>
+
+                            <form action="/bookrentalcheck" method="post">
+                                대출:<button name="bookname" value="${book.book_name}"> 대출 </button>
+                            </form>
+                            <form action="/bookresercheck" method="post">
+                                예약:<button name="bookname" value="${book.book_name}"> 예약 </button>
+                            </form>
                         </figure>
                         </c:if>
                     </c:forEach>
@@ -170,6 +206,8 @@
 
         </div>
     </div>
+
+
 </div>
 </div>
 

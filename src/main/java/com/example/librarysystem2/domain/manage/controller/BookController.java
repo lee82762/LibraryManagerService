@@ -63,23 +63,27 @@ public class BookController {
         String bookname=request.getParameter("bookname");
         String state=bookRentalService.bookList1(bookname);
         int cnt=bookRentalService.bookList2(bookname);
-
         String reser=bookReserService.bookresercheck(bookname);
+
 
         if(member!=null) {
             if(reser!=null) {
                 if (reser.equals(member.getName())) {
+                    System.out.println("dsdsdsds");
                     bookReserService.bookreserreturn(bookname);
                 }
             }
         }
 
-        if(state.equals("가능")&&member!=null){
+        if(state.equals("가능")&&member!=null&&(reser==null||reser.equals(member.getName()))){
             if(member!=null) {
                 String user_id = member.getName();
                 bookRentalService.bookrent(bookname,user_id,cnt);
             }
             model.addAttribute("RENTAL_OK","success");
+        }
+        else if(state.equals("가능")&&reser!=null&&member.getName()!=reser){
+            model.addAttribute("RENTAL_OK","resercheck");
         }
         else if(member==null){
             model.addAttribute("RENTAL_OK","logincheck");
@@ -116,8 +120,6 @@ public class BookController {
             String bookname = request.getParameter("bookname");
             bookReturnService.bookreturn(bookname);
             model.addAttribute("RETURN_OK", "success");
-
-
         return "bookreturncheck";
     }
 
@@ -132,9 +134,13 @@ public class BookController {
         String bookinfo = request.getParameter("info");
         String jogun=request.getParameter("item");
         String genre=request.getParameter("genre");
-        System.out.println(genre);
+        if(genre==null){
+            regenre="국내소설";
+        }
+
 
         List<Book> bookList=bookListService.bookList2(bookinfo,jogun);
+
         model.addAttribute("genre",regenre);
         model.addAttribute("booklist2",bookList);
         model.addAttribute("CHECK_OK","success");
@@ -145,14 +151,17 @@ public class BookController {
     public String bookSearch2(Model model, HttpServletRequest request){
 
         String genre=request.getParameter("item");
+        String check=request.getParameter("check");
         regenre=genre;
+        System.out.println("check1="+check);
 
         List<Book> bookList=bookListService.bookList3(genre);
         System.out.println(bookList.get(0).getBook_name());
+        model.addAttribute("check",check);
         model.addAttribute("genre",genre);
         model.addAttribute("booklist3",bookList);
         model.addAttribute("CHECK_OK","success");
-        return "bookserchgenre";
+        return "booksearchgenre";
     }
 
     //도서 예약
@@ -173,9 +182,7 @@ public class BookController {
         String bookname=request.getParameter("bookname");
 
         String reser=bookReserService.bookresercheck(bookname);
-
         int cnt=bookReserService.bookresercnt(bookname);
-
 
         if(reser==null && member!=null){
             if(member!=null) {

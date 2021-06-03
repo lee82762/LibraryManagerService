@@ -1,13 +1,11 @@
 package com.example.librarysystem2.domain.manage.controller;
 
+import com.example.librarysystem2.domain.manage.entity.Book;
 import com.example.librarysystem2.domain.manage.entity.Member;
 import com.example.librarysystem2.domain.manage.entity.dto.signInDto;
 import com.example.librarysystem2.domain.manage.entity.dto.signUpDto;
 import com.example.librarysystem2.domain.manage.entity.dto.userUpdateDto;
-import com.example.librarysystem2.domain.manage.service.signInService;
-import com.example.librarysystem2.domain.manage.service.signUpService;
-import com.example.librarysystem2.domain.manage.service.userDeleteService;
-import com.example.librarysystem2.domain.manage.service.userUpdateService;
+import com.example.librarysystem2.domain.manage.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
+import java.util.List;
 
 //Member 관리 12
 
@@ -34,19 +33,36 @@ public class MemberController {
     @Autowired
     private userDeleteService userDeleteService;
 
+    @Autowired
+    private BookListService bookListService;
+
     static Member sessionm;
+    static String condition;
 
     //메인 페이지
     @GetMapping("/")
-    public String Main(HttpServletRequest request){
+    public String Main(HttpServletRequest request,Model model){
         HttpSession session=request.getSession();
         if(sessionm==null){
         }
         else {
             session.setAttribute("member", sessionm);
         }
+        String condition=request.getParameter("item");
+
+        if(condition!=null) {
+            List<Book> booklist = bookListService.rankingList(condition);
+            model.addAttribute("books", booklist);
+        }
+        else {
+            List<Book> booklist = bookListService.rankingList("국내소설");
+            model.addAttribute("books", booklist);
+        }
+
         return "realmain";
     }
+
+
 
 
     //로그인

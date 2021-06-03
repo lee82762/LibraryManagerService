@@ -23,4 +23,9 @@ public class BookListService {
     public List<Book> bookList3(String genre) {
 
         return bookDao.selectBygenre(genre); }
+
+    public List<Book> rankingList(String condition){
+        return bookDao.selectByCount(condition);
+    }
+
 }

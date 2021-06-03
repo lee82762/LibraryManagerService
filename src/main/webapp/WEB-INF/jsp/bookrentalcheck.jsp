@@ -16,13 +16,17 @@ if(RENTAL_OK.equals("success")){
     out.println("<script>alert('대여 성공!'); </script>");
     out.println("<script>location.href='/bookrental'</script>");
 }
+else if(RENTAL_OK.equals("resercheck")){
+    out.println("<script>alert('예약중인 도서입니다!'); </script>");
+    out.println("<script>location.href='/booklistcheck'</script>");
+}
 else if(RENTAL_OK.equals("logincheck")){
      out.println("<script>alert('로그인을 하세요!'); </script>");
      out.println("<script>location.href='/signin'</script>");
 }
 else if(RENTAL_OK.equals("fail")){
     out.println("<script>alert('이미 대여중인 도서입니다!'); </script>");
-out.println("<script>location.href='/bookrental'</script>");
+out.println("<script>location.href='/booklistcheck'</script>");
 }
 %>
 

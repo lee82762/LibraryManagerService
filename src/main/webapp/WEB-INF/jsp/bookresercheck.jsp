@@ -14,7 +14,7 @@
     String RESER_OK = (String) request.getAttribute("RESER_OK");
     if(RESER_OK.equals("success")){
         out.println("<script>alert('예약 성공!'); </script>");
-        out.println("<script>location.href='/bookreser'</script>");
+        out.println("<script>location.href='/booklistcheck'</script>");
     }
     else if(RESER_OK.equals("logincheck")){
         out.println("<script>alert('로그인을 하세요!'); </script>");
@@ -22,7 +22,7 @@
     }
     else if(RESER_OK.equals("fail")){
         out.println("<script>alert('이미 예약중인 도서입니다!'); </script>");
-        out.println("<script>location.href='/bookrental'</script>");
+        out.println("<script>location.href='/booklistcheck'</script>");
     }
 %>
 

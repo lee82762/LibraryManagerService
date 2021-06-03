@@ -14,13 +14,7 @@
     Member member = (Member)session.getAttribute("member");
 
 
-    if(member!=null){
-        out.println("session값: "+member.getEmail());
-        out.println("session값: "+member.getName());
-        out.println("session값: "+member.getPhone());
-    }
-
-
 %>
+
 </body>
 </html>

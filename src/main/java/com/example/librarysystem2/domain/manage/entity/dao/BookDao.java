@@ -160,6 +160,24 @@ public class BookDao {
     }
 
 
+    public List<Book> selectByCount(String condition) {
+        System.out.println("***"+condition);
+        List<Book> results = jdbcTemplate.query("select * from BOOK where GENRE like"+"'%"+condition+"%'"+"ORDER BY CNT DESC LIMIT 5",
+                new RowMapper<Book>() {
+                    @Override
+                    public Book mapRow(ResultSet rs, int rowNum) throws SQLException {
+                        Book book = new Book( rs.getString("BOOK_NAME"), rs.getString("AUTHOR"),
+                                rs.getString("PUBLISHER"), rs.getString("GENRE"),
+                                rs.getString("BOOK_NUM"), rs.getString("BOOK_STATE"),
+                                rs.getString("BOOK_IMG"),rs.getTimestamp("BOOKREGDATE").toLocalDateTime(),
+                                rs.getString("USER_ID"), rs.getInt("CNT"),rs.getString("RENTAL"));
+                        book.setBook_id(rs.getLong("BOOK_ID"));
+                        return book;
+                    }
+                });
+        return results;
+    }
+
 
 
 }
