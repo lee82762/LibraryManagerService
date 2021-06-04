@@ -1,7 +1,10 @@
 package com.example.librarysystem2.domain.manage.service;
 
+import com.example.librarysystem2.domain.manage.entity.Book;
 import com.example.librarysystem2.domain.manage.entity.dao.BookDao;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
 
 public class BookReserService {
     @Autowired
@@ -16,4 +19,8 @@ public class BookReserService {
     }
 
     public void bookreserreturn(String book_name){ bookDao.reserreturn(book_name);}
+
+    public List<Book> myreserlist(String rental){
+        return bookDao.selectByrental(rental);
+    }
 }

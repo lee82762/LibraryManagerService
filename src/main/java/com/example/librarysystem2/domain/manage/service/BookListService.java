@@ -11,6 +11,7 @@ public class BookListService {
     @Autowired
     private BookDao bookDao;
 
+
     public List<Book> bookList(){
         return bookDao.selectAll();
     }
@@ -21,8 +22,8 @@ public class BookListService {
     }
 
     public List<Book> bookList3(String genre) {
-
-        return bookDao.selectBygenre(genre); }
+        return bookDao.selectBygenre(genre);
+    }
 
     public List<Book> rankingList(String condition){
         return bookDao.selectByCount(condition);

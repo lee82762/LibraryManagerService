@@ -142,7 +142,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="#" >대여/반납 현황</a>
-                    <a class="dropdown-item" href="#">예약 현황</a>
+                    <a class="dropdown-item" href="/mybookreser">예약 현황</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="/userUpdate">회원 정보 수정</a>
                     <form name="userDelete" class="needs-validation" action="/userDelete" method="POST">
@@ -210,8 +210,16 @@
                 <div class="panel-heading">
                     <h2 class="panel-title"> 도서 </h2>
                 </div>
+                <form action="/booklistcheck" method="get">
+                        <ul class="list-group">
+
+                            <button class="list-group-item" name="item" value=""> 전체보기 </button>
+                        </ul>
+                </form>
+
                 <form action="/check1" method="post">
                 <ul class="list-group">
+
                     <button class="list-group-item" name="item" value="국내소설">국내소설 </button>
                     <button class="list-group-item" name="item" value="외국소설"> 해외소설 </button>
                     <button class="list-group-item" name="item" value="경제경영">경제경영</button>
@@ -242,7 +250,7 @@
 
                 <tr>
                     <c:forEach var="book" items="${booklist}" varStatus="status">
-                        <c:if test="${book.genre eq '국내소설'}">
+
                             <figure class="figure">
                                 <img src=${book.book_img} width="151.5", height="200" hspace="10">
                                 <figcaption class="figure-caption">
@@ -260,7 +268,7 @@
                                 </form>
 
                             </figure>
-                        </c:if>
+
                     </c:forEach>
                 </tr>
 

@@ -1,10 +1,43 @@
-<%@ page import="com.example.librarysystem2.domain.manage.entity.Member" %><%--
+<%@ page import="com.example.librarysystem2.domain.manage.entity.Member" %><%--<%@ page import="com.example.librarysystem2.domain.manage.entity.Member" %>&lt;%&ndash;
   Created by IntelliJ IDEA.
   User: 이재범
-  Date: 2021-06-01
-  Time: 오후 11:44
+  Date: 2021-05-30
+  Time: 오후 8:52
   To change this template use File | Settings | File Templates.
---%>
+&ndash;%&gt;
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html>
+<head>
+    <title>Title</title>
+</head>
+<body>
+<h1> 도서 반납 </h1>
+
+<%
+    session=request.getSession();
+    session=request.getSession(true);
+    Member member = (Member)session.getAttribute("member");
+
+
+    if(member==null){
+        out.println("<script>alert('로그인 하세요!'); </script>");
+        out.println("<script>location.href='/signin'</script>");
+    }
+%>
+<ul>
+    <c:forEach var="book" items="${mybook}" varStatus="status">
+        <form action="/bookreturncheck" method="post">
+            <li> ${status.index+1} :${book.book_name}
+                <button name="bookname" value="${book.book_name}"> 반납 </button>
+            </li>
+        </form>
+    </c:forEach>
+</ul>
+<button onclick="location.href='/'"> 돌아가기 </button>
+</body>
+</html>--%>
+
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -43,6 +76,17 @@
     </style>
 </head>
 <body>
+<%
+    session=request.getSession();
+    session=request.getSession(true);
+    Member member = (Member)session.getAttribute("member");
+
+
+    if(member==null){
+        out.println("<script>alert('로그인 하세요!'); </script>");
+        out.println("<script>location.href='/signin'</script>");
+    }
+%>
 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
@@ -57,13 +101,13 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="/booklistcheck">검색</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/bookrental">대출</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="/bookreturn">반납</a>
             </li>
             <li class="nav-item">
@@ -77,14 +121,24 @@
                     <a class="dropdown-item" href="#" >대여/반납 현황</a>
                     <a class="dropdown-item" href="/mybookreser">예약 현황</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">회원 정보 수정</a>
-                    <a class="dropdown-item" href="#">회원 탈퇴</a>
+                    <a class="dropdown-item" href="/userUpdate">회원 정보 수정</a>
+                    <form name="userDelete" class="needs-validation" action="/userDelete" method="POST">
+                        <input type="hidden" type="submit"></input>
+                    </form>
+                    <a class="dropdown-item"  href="#" onclick="javascript:document.userDelete.submit();">회원 탈퇴</a>
                 </div>
-
-
             </li>
         </ul>
+        <%--       <div class="float-right" style= "display: flex; justify-content: right;">
+                   <form class="needs-validation" action="/signin" method="GET">
+                   <button type="button" class="btn btn-outline-primary float-right" onClick="location.href='/signin'">로그인</button>
+                   </form>
 
+                   <form class="needs-validation" action="/signup" method="GET">
+                   <button type="button" class="btn btn-primary float-right" onClick="location.href='/signup'">회원가입</button>
+                   </form>
+
+               </div>--%>
         <%
             session=request.getSession();
             //session=request.getSession(true);
@@ -100,7 +154,7 @@
         </form>
 
         <% }else{ %>
-
+        <marquee  width="300" height="50"> <% if(memberInfo!=null) out.print(memberInfo.getName()+"님이 로그인 중입니다. "); %> </marquee>
         <form class="needs-validation" action="/signout" method="GET">
             <button class="btn btn-primary float-right" type="submit">로그아웃</button>
         </form>
@@ -117,68 +171,44 @@
         <% } %>
     </div>
 </nav>
+
+
+
 <div class="container-fluid">
+
     <div class="row">
-        <div class="col-md-3">
-            <div class="panel panel-info">
-                <div class="panel-heading">
-                    <h2 class="panel-title"> 도서 </h2>
-                </div>
 
-                <form action="/booklistcheck" method="get">
-                    <ul class="list-group">
-                        <button class="list-group-item" name="item" value=""> 전체보기 </button>
-                    </ul>
-                </form>
-
-                <form action="/check1" method="post">
-                    <ul class="list-group">
-                        <button class="list-group-item" name="item" value="국내소설">국내소설 </button>
-                        <button class="list-group-item" name="item" value="외국소설"> 해외소설 </button>
-                        <button class="list-group-item" name="item" value="경제경영">경제경영</button>
-                        <button class="list-group-item" name="item" value="인문과학"> 인문과학 </button>
-                        <button class="list-group-item" name="item" value="만화"> 만화 </button>
-                    </ul>
-                </form>
-
-            </div>
-        </div>
 
         <div class="col-md-9">
-            <form action="/check" method="post">
-                <td>
-                    <input type="text" name="info">
-                    <input type="submit" value="검색">
-                </td>
-                <td>
-                    <input type="hidden" name="genre" value="${genre}">
-                    <input type="checkbox" name="item" value="book_name" onclick="oneCheckbox(this)">제목
-                    <input type="checkbox" name="item" value="author" onclick="oneCheckbox(this)">글쓴이
-                    <input type="checkbox" name="item" value="publisher" onclick="oneCheckbox(this)">출판사
-                    <input type="checkbox" name="item" value="genre" onclick="oneCheckbox(this)">장르
-                </td>
-            </form>
+
             <table class="table">
                 <tbody>
 
                 <tr>
-                    <c:forEach var="book" items="${booklist3}" varStatus="status">
-                            <figure class="figure">
-                                <img src=${book.book_img} width="151.5", height="200" hspace="10">
-                                <figcaption class="figure-caption">
-                                    이름: ${book.book_name} <br>
-                                    저자: ${book.author}<br>
-                                    출판사: ${book.publisher}<br>
-                                    대여: <button>${book.book_state}</button>
-                                </figcaption>
+                    <% if (member==null){
+                        out.println("<script>alert('로그인을 하세요!'); </script>");
+                        out.println("<script>location.href='/signin'</script>");
+                    }
+                    else{
+                    %>
+                    <p><%=member.getName()%>님의 예약도서</p>
+                    <% }%>
+                    <c:forEach var="book" items="${mybook}" varStatus="status">
 
-                                <form action="/bookrentalcheck" method="post">
-                                    대출:<button name="bookname" value="${book.book_name}"> 대출 </button>
-                                </form>
-                                <form action="/bookresercheck" method="post">
-                                    예약:<button name="bookname" value="${book.book_name}"> 예약 </button>
-                                </form>
-                            </figure>
+                        <figure class="figure">
+                            <img src=${book.book_img} width="151.5", height="200" hspace="10">
+                            <figcaption class="figure-caption">
+                                이름: ${book.book_name} <br>
+                                저자: ${book.author}<br>
+                                출판사: ${book.publisher}<br>
+                            </figcaption>
+
+                            <form action="/bookrentalcheck" method="post">
+                                대출:<button name="bookname" value="${book.book_name}"> 대출 </button>
+                            </form>
+
+                        </figure>
+
                     </c:forEach>
                 </tr>
 
@@ -191,6 +221,8 @@
     </div>
 </div>
 </div>
+
+<%--</form>--%>
 
 </body>
 </html>

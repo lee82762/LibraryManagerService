@@ -128,17 +128,31 @@ public class BookController {
         return "bookList";
     }*/
 
+  //도서 나의 예약
+  @GetMapping("/mybookreser")
+  public String mybookreser(Model model,HttpServletRequest request){
+      HttpSession session = request.getSession();
+      Member member = (Member)session.getAttribute("member");
+      System.out.println(member.getName());
+
+      if(member!=null) {
+          model.addAttribute("mybook", bookReserService.myreserlist(member.getName()));
+      }
+      return "mybookreser";
+  }
+
+
     //도서 상세 검색
     @PostMapping("/check")
     public String bookSearch1(Model model, HttpServletRequest request){
         String bookinfo = request.getParameter("info");
         String jogun=request.getParameter("item");
         String genre=request.getParameter("genre");
+
+
         if(genre==null){
-            regenre="국내소설";
+            regenre="";
         }
-
-
         List<Book> bookList=bookListService.bookList2(bookinfo,jogun);
 
         model.addAttribute("genre",regenre);

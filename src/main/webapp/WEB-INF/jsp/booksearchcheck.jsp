@@ -97,7 +97,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="#" >대여/반납 현황</a>
-                    <a class="dropdown-item" href="#">예약 현황</a>
+                    <a class="dropdown-item" href="/mybookreser">예약 현황</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">회원 정보 수정</a>
                     <a class="dropdown-item" href="#">회원 탈퇴</a>
@@ -146,6 +146,12 @@
                 <div class="panel-heading">
                     <h2 class="panel-title"> 도서 </h2>
                 </div>
+                <form action="/booklistcheck" method="get">
+                    <ul class="list-group">
+
+                        <button class="list-group-item" name="item" value=""> 전체보기 </button>
+                    </ul>
+                </form>
                 <form action="/check1" method="post">
                     <ul class="list-group">
                         <button class="list-group-item" name="item" value="국내소설">국내소설 </button>
@@ -178,6 +184,24 @@
                 <tr>
                     <c:forEach var="book" items="${booklist2}"  varStatus="status">
                         <c:set var="boo2" value="${genre}" />
+                        <c:if test="${genre eq ''}">
+                            <figure class="figure">
+                                <img src=${book.book_img} width="151.5", height="200" hspace="10">
+                                <figcaption class="figure-caption">
+                                    이름: ${book.book_name} <br>
+                                    저자: ${book.author}<br>
+                                    출판사: ${book.publisher}<br>
+                                    대여: <button>${book.book_state}</button>
+                                </figcaption>
+
+                                <form action="/bookrentalcheck" method="post">
+                                    대출:<button name="bookname" value="${book.book_name}"> 대출 </button>
+                                </form>
+                                <form action="/bookresercheck" method="post">
+                                    예약:<button name="bookname" value="${book.book_name}"> 예약 </button>
+                                </form>
+                            </figure>
+                        </c:if>
                         <c:if test="${book.genre eq boo2}">
                         <figure class="figure">
                             <img src=${book.book_img} width="151.5", height="200" hspace="10">
@@ -198,9 +222,6 @@
                         </c:if>
                     </c:forEach>
                 </tr>
-
-
-
                 </tbody>
             </table>
 
