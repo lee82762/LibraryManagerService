@@ -1,62 +1,4 @@
-<%@ page import="com.example.librarysystem2.domain.manage.entity.Member" %><%--<%@ page import="com.example.librarysystem2.domain.manage.entity.Member" %>
-<%@ page contentType="text/html; charset=utf-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head> <meta charset="EUC-KR"> </head>
-<body>
-<h1> 도서 대출 </h1>
-<script>
-    function btn(){
-        alert('버튼이 클릭되었습니다');
-
-    }
-</script>
-
-<form action="/check" method="post">
-    <td>
-        <input type="text" name="info">
-        <input type="submit" value="검색">
-    </td>
-    <td>
-        <input type="checkbox" name="item" value="book_name">제목
-        <input type="checkbox" name="item" value="author">글쓴이
-        <input type="checkbox" name="item" value="publisher">출판사
-        <input type="checkbox" name="item" value="genre">장르
-    </td>
-</form>
-
-<ul>
-    <c:forEach var="book" items="${booklist}" varStatus="status">
-        <form action="/bookrentalcheck" method="post">
-        <li> ${status.index+1} :${book.book_name}
-            <button name="bookname" value="${book.book_name}"> 대출 </button>
-
-        </li>
-        </form>
-    </c:forEach>
-</ul>
-<button onclick="location.href='/'"> 돌아가기 </button>
-
-&lt;%&ndash;<img src=${book.book_img} width="500", height="250" >&ndash;%&gt;
-<%
-
-
-    session=request.getSession();
-    session=request.getSession(true);
-    Member member = (Member)session.getAttribute("member");
-
-
-    if(member!=null){
-        out.println("session값: "+member.getEmail());
-        out.println("session값: "+member.getName());
-        out.println("session값: "+member.getPhone());
-    }
-
-
-%>
-</body>
-</html>--%>
+<%@ page import="com.example.librarysystem2.domain.manage.entity.Member" %>
 
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -138,16 +80,6 @@
                 </div>
             </li>
         </ul>
-        <%--       <div class="float-right" style= "display: flex; justify-content: right;">
-                   <form class="needs-validation" action="/signin" method="GET">
-                   <button type="button" class="btn btn-outline-primary float-right" onClick="location.href='/signin'">로그인</button>
-                   </form>
-
-                   <form class="needs-validation" action="/signup" method="GET">
-                   <button type="button" class="btn btn-primary float-right" onClick="location.href='/signup'">회원가입</button>
-                   </form>
-
-               </div>--%>
         <%
             session=request.getSession();
             //session=request.getSession(true);
@@ -168,15 +100,6 @@
         <form class="needs-validation" action="/signout" method="GET">
             <button class="btn btn-primary float-right" type="submit">로그아웃</button>
         </form>
-        <%--
-
-                <form class="needs-validation" action="/userUpdate" method="GET">
-                    <button class="btn btn-primary float-right" type="submit">회원수정</button>
-                </form>
-
-                <form class="needs-validation" action="/userDelete" method="POST">
-                    <button  type="submit">회원탈퇴</button>
-                </form>--%>
 
         <% } %>
     </div>
@@ -225,7 +148,7 @@
                     <input type="checkbox" name="item" value="book_name" onclick="oneCheckbox(this)">제목
                     <input type="checkbox" name="item" value="author" onclick="oneCheckbox(this)">글쓴이
                     <input type="checkbox" name="item" value="publisher" onclick="oneCheckbox(this)">출판사
-                    <input type="checkbox" name="item" value="genre" onclick="oneCheckbox(this)">장르
+
                 </td>
             </form>
 

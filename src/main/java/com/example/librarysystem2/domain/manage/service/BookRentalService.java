@@ -8,11 +8,11 @@ public class BookRentalService {
     @Autowired
     private BookDao bookDao;
 
-    //find book_state
+    //책상태 출력
     public String bookList1(String bookinfo){
         return bookDao.selectfindstate(bookinfo); }
 
-    //find cnt
+    //조회수 출력
     public int bookList2(String bookinfo){
         return bookDao.selectfindcnt(bookinfo); }
 

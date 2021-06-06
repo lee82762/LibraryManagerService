@@ -1,32 +1,4 @@
-<%@ page import="com.example.librarysystem2.domain.manage.entity.Member" %><%--
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
-<head>
-</head>
-<body>
-<h1> 검색결과 </h1>
-<ul>
-    <c:forEach var="book1" items="${booklist2}" varStatus="status">
-        <li> ${status.index+1} :${book1.book_name}
-            <button onclick="javascript:btn()"  value="${book1.book_name}"> 자세히보기 </button>
-        </li>
-    </c:forEach>
-</ul>
-<button onclick="location.href='/booklistcheck'"> 돌아가기 </button>
-<%
-    String CHECK_OK = (String) request.getAttribute("CHECK_OK");
-    if(CHECK_OK.equals("success")){
-
-        //out.println("<script>location.href='/booklistcheck'</script>");
-    }
-%>
-
-
-</body>
-</html>
---%>
-
+<%@ page import="com.example.librarysystem2.domain.manage.entity.Member" %>
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -126,15 +98,6 @@
         <form class="needs-validation" action="/signout" method="GET">
             <button class="btn btn-primary float-right" type="submit">로그아웃</button>
         </form>
-        <%--
-
-                <form class="needs-validation" action="/userUpdate" method="GET">
-                    <button class="btn btn-primary float-right" type="submit">회원수정</button>
-                </form>
-
-                <form class="needs-validation" action="/userDelete" method="POST">
-                    <button  type="submit">회원탈퇴</button>
-                </form>--%>
 
         <% } %>
     </div>
@@ -176,7 +139,6 @@
                     <input type="checkbox" name="item" value="book_name" onclick="oneCheckbox(this)">제목
                     <input type="checkbox" name="item" value="author" onclick="oneCheckbox(this)">글쓴이
                     <input type="checkbox" name="item" value="publisher" onclick="oneCheckbox(this)">출판사
-                    <input type="checkbox" name="item" value="genre" onclick="oneCheckbox(this)">장르
                 </td>
             </form>
             <table class="table">

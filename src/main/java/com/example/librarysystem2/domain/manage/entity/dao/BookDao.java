@@ -148,6 +148,8 @@ public class BookDao {
         return results;
     }
 
+
+
     //로그인한 사용자 도서 예약 목록
     public List<Book> selectByrental(String rental) {
         List<Book> results = jdbcTemplate.query("select * from BOOK where rental=?",

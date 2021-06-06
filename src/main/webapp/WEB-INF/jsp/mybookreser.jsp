@@ -1,43 +1,4 @@
-<%@ page import="com.example.librarysystem2.domain.manage.entity.Member" %><%--<%@ page import="com.example.librarysystem2.domain.manage.entity.Member" %>&lt;%&ndash;
-  Created by IntelliJ IDEA.
-  User: 이재범
-  Date: 2021-05-30
-  Time: 오후 8:52
-  To change this template use File | Settings | File Templates.
-&ndash;%&gt;
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
-<h1> 도서 반납 </h1>
-
-<%
-    session=request.getSession();
-    session=request.getSession(true);
-    Member member = (Member)session.getAttribute("member");
-
-
-    if(member==null){
-        out.println("<script>alert('로그인 하세요!'); </script>");
-        out.println("<script>location.href='/signin'</script>");
-    }
-%>
-<ul>
-    <c:forEach var="book" items="${mybook}" varStatus="status">
-        <form action="/bookreturncheck" method="post">
-            <li> ${status.index+1} :${book.book_name}
-                <button name="bookname" value="${book.book_name}"> 반납 </button>
-            </li>
-        </form>
-    </c:forEach>
-</ul>
-<button onclick="location.href='/'"> 돌아가기 </button>
-</body>
-</html>--%>
-
+<%@ page import="com.example.librarysystem2.domain.manage.entity.Member" %>
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -128,16 +89,7 @@
                 </div>
             </li>
         </ul>
-        <%--       <div class="float-right" style= "display: flex; justify-content: right;">
-                   <form class="needs-validation" action="/signin" method="GET">
-                   <button type="button" class="btn btn-outline-primary float-right" onClick="location.href='/signin'">로그인</button>
-                   </form>
 
-                   <form class="needs-validation" action="/signup" method="GET">
-                   <button type="button" class="btn btn-primary float-right" onClick="location.href='/signup'">회원가입</button>
-                   </form>
-
-               </div>--%>
         <%
             session=request.getSession();
             //session=request.getSession(true);
@@ -157,15 +109,6 @@
         <form class="needs-validation" action="/signout" method="GET">
             <button class="btn btn-primary float-right" type="submit">로그아웃</button>
         </form>
-        <%--
-
-                <form class="needs-validation" action="/userUpdate" method="GET">
-                    <button class="btn btn-primary float-right" type="submit">회원수정</button>
-                </form>
-
-                <form class="needs-validation" action="/userDelete" method="POST">
-                    <button  type="submit">회원탈퇴</button>
-                </form>--%>
 
         <% } %>
     </div>

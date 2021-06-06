@@ -1,43 +1,7 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: 이재범
-  Date: 2021-05-28
-  Time: 오후 8:25
-  To change this template use File | Settings | File Templates.
---%>
-<%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-</head>
-<body>
-<div class="fixed-top">
-    <jsp:include page="header.jsp" flush="false"/>
-</div>
-<div style="padding-top: 90px; padding-bottom: 0px">
-    <jsp:include page="body.jsp" flush="false"/>
-</div>
-
-<div style="padding-top: 100px; padding-bottom: 0px">
-    <jsp:include page="main.jsp" flush="false"/>
-</div>
-
-</body>
-</html>--%>
-<%--
-  Created by IntelliJ IDEA.
-  User: 남예주
-  Date: 2021-05-31
-  Time: 오전 2:25
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <%--  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">--%>
-    <%--  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>--%>
-    <%--  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>--%>
-    <%--  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>--%>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/css/swiper.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.1/js/swiper.min.js"></script>
 
@@ -57,6 +21,7 @@
         }
     </style>
 </head>
+
 <body>
 <!--header / navbar-->
 <div class="fixed-top">
@@ -66,54 +31,6 @@
 <div style="padding-top: 100px; padding-bottom: 0px">
     <jsp:include page="main.jsp" flush="false"/>
 </div>
-
-<!--슬라이드 띄울 장르 선택-->
-<%--<form action="/" method="get">--%>
-<%--  <button type="text" name="item" value="국내소설">국내소설</button>--%>
-<%--  <button type="text" name="item" value="외국소설">외국소설</button>--%>
-<%--  <button type="text" name="item" value="만화">만화</button>--%>
-<%--</form>--%>
-<%--<!--image slide-->--%>
-<%--<div class="col-lg-4 col-md-offset-1">--%>
-<%--<div id="imageSlide" class="carousel slide" data-ride="carousel">--%>
-<%--  <ol class="carousel-indicators">--%>
-<%--    <li data-target="#imageSlide" data-slide-to="0" class="active"></li>--%>
-<%--    <li data-target="#imageSlide" data-slide-to="1"></li>--%>
-<%--    <li data-target="#imageSlide" data-slide-to="2"></li>--%>
-<%--  </ol>--%>
-<%--  <div class="carousel-inner">--%>
-
-
-<%--    <c:forEach var="book" items="${books}" varStatus="status">--%>
-<%--      <c:choose>--%>
-<%--        <c:when test="${status.index eq 0}">--%>
-<%--          <div class="carousel-item active col-lg-3">--%>
-<%--            <img src=${book.BOOK_IMG} width="151.5", height="200" >--%>
-<%--            <p>${book.BOOK_NAME}</p>--%>
-<%--          </div>--%>
-<%--        </c:when>--%>
-<%--        <c:when test="${status.index ne 0}">--%>
-<%--          <div class="carousel-item col-lg-3">--%>
-<%--            <img src=${book.BOOK_IMG} width="151.5", height="200" >--%>
-<%--            <p>${book.BOOK_NAME}</p>--%>
-<%--          </div>--%>
-<%--        </c:when>--%>
-<%--      </c:choose>--%>
-<%--    </c:forEach>--%>
-
-<%--  </div>--%>
-<%--  <a class="carousel-control-prev" href="#imageSlide" role="button" data-slide="prev">--%>
-<%--    <span class="carousel-control-prev-icon" aria-hidden="true"></span>--%>
-<%--    <span class="sr-only">Previous</span>--%>
-<%--  </a>--%>
-<%--  <a class="carousel-control-next" href="#imageSlide" role="button" data-slide="next">--%>
-<%--    <span class="carousel-control-next-icon" aria-hidden="true"></span>--%>
-<%--    <span class="sr-only">Next</span>--%>
-<%--  </a>--%>
-<%--</div>--%>
-
-<%--</div>--%>
-<!---->
 <style type="text/css">
 
     .swiper-container {
@@ -156,13 +73,6 @@
 
 
 </style>
-
-<%--<div class="swiper-container">--%>
-
-
-<%--  <nav aria-label="breadcrumb">--%>
-<%--    <ol class="breadcrumb">--%>
-
 <form name="ko" action="/" method="get">
     <input type="hidden" name="item" value="국내소설">
 </form>
@@ -182,17 +92,6 @@
 <form name="comic" action="/" method="get">
     <input type="hidden" name="item" value="만화">
 </form>
-
-<%--      <li class="breadcrumb-item" ><a href="#" onclick="javascript:document.ko.submit()">국내소설</a></li>--%>
-<%--      <li class="breadcrumb-item" ><a href="#" onclick="javascript:document.en.submit()">외국소설</a></li>--%>
-<%--      <li class="breadcrumb-item"><a href="#" onclick="javascript:document.economy.submit()">경제경영</a></li>--%>
-<%--      <li class="breadcrumb-item"><a href="#" onclick="javascript:document.science.submit()">인문과학</a></li>--%>
-<%--      <li class="breadcrumb-item"><a href="#" onclick="javascript:document.comic.submit()">만화</a></li>--%>
-<%--    </ol>--%>
-
-<%--  </nav>--%>
-
-<!---->
 <div class="card text-center">
     <div class="card-header">
         <ul class="nav nav-tabs card-header-tabs">
@@ -241,30 +140,6 @@
     </div>
 </div>
 </div>
-<!---->
-<%--  <div style="text-align:center; margin-top:5px;">베스트셀러 Top 5</div>--%>
-<%--  <div class="swiper-wrapper">--%>
-<%--    <c:forEach var="book" items="${books}" varStatus="status">--%>
-
-<%--      <div class="swiper-slide">--%>
-<%--        <div>--%>
-<%--        <img src=${book.BOOK_IMG} width="200", height="264" >--%>
-<%--        <br><p>${book.BOOK_NAME}</p>--%>
-<%--        </div>--%>
-<%--      </div>--%>
-
-<%--    </c:forEach>--%>
-
-<%--  </div>--%>
-
-<%--  <!-- 네비게이션 -->--%>
-<%--  <div class="swiper-button-next"></div><!-- 다음 버튼 (오른쪽에 있는 버튼) -->--%>
-<%--  <div class="swiper-button-prev"></div><!-- 이전 버튼 -->--%>
-
-<%--  <!-- 페이징 -->--%>
-<%--  <div class="swiper-pagination"></div>--%>
-<%--</div>--%>
-
 <script>
 
     new Swiper('.swiper-container', {

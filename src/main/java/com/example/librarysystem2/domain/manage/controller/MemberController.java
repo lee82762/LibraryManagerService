@@ -90,14 +90,13 @@ public class MemberController {
             }
             //db에 값이랑 email은 같고 password가 다를때
             else if (signInDto.getEmail().equals(member.getEmail()) && !signInDto.getPassword().equals(member.getPassword())) {
-                System.out.println("2");
                 model.addAttribute("SIGNIN_OK", "failpwd");
             }
         }
-
         return "signIncheck";
-
     }
+
+
 
     //회원가입
     @GetMapping("/signup")
@@ -126,6 +125,7 @@ public class MemberController {
     public String userUpdatepage(){
         return "userUpdate";
     }
+
 
     //회원 수정 확인
     @PostMapping("/userUpdatecheck")

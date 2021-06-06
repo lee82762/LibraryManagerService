@@ -17,21 +17,13 @@ public class MemberDao {
     }
 
 
-    public List<Member> selectAll() {
-        List<Member> results = jdbcTemplate.query("select * from MEMBERST",
-                (ResultSet rs, int rowNum) -> {
-                    Member member = new Member( rs.getString("EMAIL"), rs.getString("PASSWORD"),rs.getString("NAME"), rs.getString("PHONE"),rs.getTimestamp("REGDATE").toLocalDateTime());
-                    member.setId(rs.getLong("ID"));
-                    return member;
-                });
-        return results;
-    }
-
+    //회원가입
     public void insert (signUpDto signUpDto){
         jdbcTemplate.update("insert memberst (email,password,name,phone,regdate) values (?,?,?,?,?)",
                 signUpDto.getEmail(), signUpDto.getPassword(), signUpDto.getName(), signUpDto.getPhone(),signUpDto.getRegisterDateTime());
     }
 
+    //이메일에 유무확인
     public Member selectByEmail(String email) {
         List<Member> results = jdbcTemplate.query("select * from memberst where email=?",
                 new RowMapper<Member>() {
@@ -49,12 +41,13 @@ public class MemberDao {
         return results.isEmpty() ? null : results.get(0);
     }
 
+    //회원수정
     public void update (userUpdateDto userUpdateDto){
         jdbcTemplate.update("update  memberst set password=? , name=?, phone=?, regdate=? where email=?",
                 userUpdateDto.getPassword(),userUpdateDto.getName(),userUpdateDto.getPhone(),userUpdateDto.getRegisterDateTime(),userUpdateDto.getEmail());
     }
 
-    //member delete
+    //회원삭제
     public void delete (String email){
         jdbcTemplate.update("delete from memberst where email=?", email);
     }

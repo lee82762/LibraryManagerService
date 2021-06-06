@@ -9,10 +9,12 @@ public class userUpdateService {
     @Autowired
     private MemberDao memberDao;
 
+    //회원수정
     public void userupdate(userUpdateDto userUpdateDto){
         memberDao.update(userUpdateDto);
     }
 
+    //세션값 수정
     public Member sessionchange(userUpdateDto userUpdateDto){
         return memberDao.selectByEmail(userUpdateDto.getEmail());
     }

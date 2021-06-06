@@ -1,10 +1,4 @@
-<%@ page import="com.example.librarysystem2.domain.manage.entity.Member" %><%--
-  Created by IntelliJ IDEA.
-  User: 이재범
-  Date: 2021-06-01
-  Time: 오후 11:44
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="com.example.librarysystem2.domain.manage.entity.Member" %>
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
@@ -104,15 +98,6 @@
         <form class="needs-validation" action="/signout" method="GET">
             <button class="btn btn-primary float-right" type="submit">로그아웃</button>
         </form>
-        <%--
-
-                <form class="needs-validation" action="/userUpdate" method="GET">
-                    <button class="btn btn-primary float-right" type="submit">회원수정</button>
-                </form>
-
-                <form class="needs-validation" action="/userDelete" method="POST">
-                    <button  type="submit">회원탈퇴</button>
-                </form>--%>
 
         <% } %>
     </div>
@@ -155,7 +140,6 @@
                     <input type="checkbox" name="item" value="book_name" onclick="oneCheckbox(this)">제목
                     <input type="checkbox" name="item" value="author" onclick="oneCheckbox(this)">글쓴이
                     <input type="checkbox" name="item" value="publisher" onclick="oneCheckbox(this)">출판사
-                    <input type="checkbox" name="item" value="genre" onclick="oneCheckbox(this)">장르
                 </td>
             </form>
             <table class="table">

@@ -65,10 +65,9 @@ public class BookController {
 
         String state=bookRentalService.bookList1(bookname);
         int cnt=bookRentalService.bookList2(bookname);
-
         String reser=bookReserService.bookresercheck(bookname);
 
-
+        //로그인된 사용자가 있고 예약자가 있을때  사용자와 예약자명이 같은경우
         if(member!=null) {
             if(reser!=null) {
                 if (reser.equals(member.getName())) {
@@ -85,15 +84,19 @@ public class BookController {
             }
             model.addAttribute("RENTAL_OK","success");
         }
+
         else if(state.equals("가능")&&reser!=null&&member.getName()!=reser){
             model.addAttribute("RENTAL_OK","resercheck");
         }
+
         else if(member==null){
             model.addAttribute("RENTAL_OK","logincheck");
         }
+
         else if(state.equals("불가능")){
             model.addAttribute("RENTAL_OK","fail");
         }
+
         return "bookrentalcheck";
     }
 
@@ -110,13 +113,9 @@ public class BookController {
             String bookname = request.getParameter("bookname");
             model.addAttribute("mybook", bookReturnService.mylist(member.getName()));
         }
-
-        /*if(bookname!=null) {
-            bookReturnService.bookreturn(bookname);
-            model.addAttribute("RETURN_OK","success");
-        }*/
         return "bookreturn";
     }
+
     //도서 반납 확인
     @PostMapping("/bookreturncheck")
     public String bookreturncheck(Model model,HttpServletRequest request){
@@ -128,10 +127,7 @@ public class BookController {
         return "bookreturncheck";
     }
 
-  /*  @PostMapping("/bookSearch")
-    public String bookSearch(Model model){
-        return "bookList";
-    }*/
+
 
   //도서 나의 예약
   @GetMapping("/mybookreser")
@@ -164,16 +160,13 @@ public class BookController {
 
     }
 
+    //도서 장르별  리스트 검색
     @PostMapping("/check1")
     public String bookSearch2(Model model, HttpServletRequest request){
-
         String genre=request.getParameter("item");
         String check=request.getParameter("check");
         regenre=genre;
-        System.out.println("check1="+check);
-
         List<Book> bookList=bookListService.bookList3(genre);
-        System.out.println(bookList.get(0).getBook_name());
         model.addAttribute("check",check);
         model.addAttribute("genre",genre);
         model.addAttribute("booklist3",bookList);

@@ -8,6 +8,7 @@ public class userDeleteService {
     @Autowired
     private MemberDao memberDao;
 
+    //회원탈퇴
     public void  delete(String email){
         memberDao.delete(email);
     }

@@ -10,10 +10,12 @@ public class BookReturnService {
     @Autowired
     private BookDao bookDao;
 
+    //나의 대여 현황
     public List<Book> mylist(String user_id){
         return bookDao.selectByUserid(user_id);
     }
 
+    //도서 반납
     public void bookreturn(String book_name){
         bookDao.update1(book_name);
 

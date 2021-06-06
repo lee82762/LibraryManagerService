@@ -9,6 +9,7 @@ public class signInService {
     @Autowired
     private MemberDao memberDao;
 
+    //회원가입
     public Member signIn(signInDto signInDto) {
         String email=signInDto.getEmail();
         System.out.println("signIn="+email);

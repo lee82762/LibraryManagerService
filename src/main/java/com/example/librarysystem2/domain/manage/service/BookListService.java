@@ -11,7 +11,7 @@ public class BookListService {
     @Autowired
     private BookDao bookDao;
 
-
+    //전체 리스트 출력
     public List<Book> bookList(){
         return bookDao.selectAll();
     }
@@ -22,10 +22,13 @@ public class BookListService {
         return bookDao.selectByEmail(bookinfo,jogun);
     }
 
-    public List<Book> bookList3(String genre) {
+    //장르별 리스트 출력
+    public List<Book> bookList3(String genre)
+    {
         return bookDao.selectBygenre(genre);
     }
 
+    //랭킹 top5 출력
     public List<Book> rankingList(String condition){
         return bookDao.selectByCount(condition);
     }

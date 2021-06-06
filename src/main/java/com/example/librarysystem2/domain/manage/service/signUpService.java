@@ -11,6 +11,7 @@ public class signUpService {
     @Autowired
     private MemberDao memberDao;
 
+    //이메일 유무 확인
     public boolean check(signUpDto signUpDto){
         boolean already=false;
         Member member=memberDao.selectByEmail(signUpDto.getEmail());
@@ -20,6 +21,7 @@ public class signUpService {
         return already;
     }
 
+    //로그인
     public void signUp(signUpDto signUpDto) {
 
         String email = signUpDto.getEmail();
