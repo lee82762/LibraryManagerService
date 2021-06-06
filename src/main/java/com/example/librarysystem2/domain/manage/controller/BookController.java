@@ -38,13 +38,14 @@ public class BookController {
     //도서 검색
     @GetMapping("/booklistcheck")
     public String booklist1(Model model,@RequestParam(defaultValue="1") int curPage){
-        List<Book> bookList=bookListService.bookList();
-        String img=bookList.get(0).getBook_img();
 
-        model.addAttribute("imgpath",img);
+        List<Book> bookList=bookListService.bookList();
         model.addAttribute("booklist",bookListService.bookList());
+
         return "bookList";
     }
+
+
 
     //도서 대출
     @GetMapping("/bookrental")
@@ -61,19 +62,21 @@ public class BookController {
         Member member = (Member)session.getAttribute("member");
 
         String bookname=request.getParameter("bookname");
+
         String state=bookRentalService.bookList1(bookname);
         int cnt=bookRentalService.bookList2(bookname);
+
         String reser=bookReserService.bookresercheck(bookname);
 
 
         if(member!=null) {
             if(reser!=null) {
                 if (reser.equals(member.getName())) {
-                    System.out.println("dsdsdsds");
                     bookReserService.bookreserreturn(bookname);
                 }
             }
         }
+
 
         if(state.equals("가능")&&member!=null&&(reser==null||reser.equals(member.getName()))){
             if(member!=null) {
@@ -93,6 +96,8 @@ public class BookController {
         }
         return "bookrentalcheck";
     }
+
+
 
 
     //도서 반납
@@ -133,8 +138,6 @@ public class BookController {
   public String mybookreser(Model model,HttpServletRequest request){
       HttpSession session = request.getSession();
       Member member = (Member)session.getAttribute("member");
-      System.out.println(member.getName());
-
       if(member!=null) {
           model.addAttribute("mybook", bookReserService.myreserlist(member.getName()));
       }
@@ -148,8 +151,6 @@ public class BookController {
         String bookinfo = request.getParameter("info");
         String jogun=request.getParameter("item");
         String genre=request.getParameter("genre");
-
-
         if(genre==null){
             regenre="";
         }
@@ -159,6 +160,8 @@ public class BookController {
         model.addAttribute("booklist2",bookList);
         model.addAttribute("CHECK_OK","success");
         return "booksearchcheck";
+
+
     }
 
     @PostMapping("/check1")

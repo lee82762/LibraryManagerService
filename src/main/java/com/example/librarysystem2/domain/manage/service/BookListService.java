@@ -17,7 +17,8 @@ public class BookListService {
     }
 
     //조건별 리스트 출력
-    public List<Book> bookList2(String bookinfo, String jogun){
+    public List<Book> bookList2(String bookinfo, String jogun)
+    {
         return bookDao.selectByEmail(bookinfo,jogun);
     }
 

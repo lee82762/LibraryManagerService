@@ -23,48 +23,36 @@ public class javaConfig {
         ds.setTimeBetweenEvictionRunsMillis(10 * 1000);
         return ds;
     }
-
-
     @Bean
     public MemberDao memberDao() {
         return new MemberDao(dataSource());
     }
-
     @Bean
     public signUpService signUpService(){
         return new signUpService();
     }
-
     @Bean
     public signInService signInService(){
         return new signInService();
     }
-
     @Bean
     public userUpdateService userUpdateService(){ return new userUpdateService(); }
-
     @Bean
     public userDeleteService userDeletService(){
         return new userDeleteService();
     }
-
-
     @Bean
     public BookDao bookDao() {
         return new BookDao(dataSource());
     }
-
     @Bean
     public BookListService bookListService(){ return  new BookListService(); }
-
     @Bean
     public BookRentalService bookRentalService(){
         return new BookRentalService();
     }
-
     @Bean
     public BookReturnService bookReturnService() { return  new BookReturnService(); }
-
     @Bean
     public BookReserService bookReserService(){return  new BookReserService(); }
 }

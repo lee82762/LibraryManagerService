@@ -179,7 +179,6 @@ public class BookDao {
 
 
     public List<Book> selectByCount(String condition) {
-        System.out.println("***"+condition);
         List<Book> results = jdbcTemplate.query("select * from BOOK where GENRE like"+"'%"+condition+"%'"+"ORDER BY CNT DESC LIMIT 5",
                 new RowMapper<Book>() {
                     @Override

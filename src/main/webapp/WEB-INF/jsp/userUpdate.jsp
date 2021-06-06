@@ -81,6 +81,7 @@
             <hr class="mb-4">
             <button class="btn btn-primary" type="submit">수정하기</button>
         </form>
+        <button class="btn btn-primary" type="submit" onclick="location.href='/'">돌아가기</button>
     </div>
 </div>
 

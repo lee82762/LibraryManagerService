@@ -13,13 +13,10 @@
 </head>
 <body>
 <h1> 도서 반납 </h1>
-
 <%
     session=request.getSession();
     session=request.getSession(true);
     Member member = (Member)session.getAttribute("member");
-
-
     if(member==null){
         out.println("<script>alert('로그인 하세요!'); </script>");
         out.println("<script>location.href='/signin'</script>");
@@ -65,7 +62,6 @@
     </script>
 
     <style>
-
         .container-fluid{
             margin-top: 150px;
         }
@@ -80,10 +76,8 @@
     session=request.getSession();
     session=request.getSession(true);
     Member member = (Member)session.getAttribute("member");
-
-
     if(member==null){
-        out.println("<script>alert('로그인 하세요!'); </script>");
+        out.println("<script>alert('로그인 하세요!!!'); </script>");
         out.println("<script>location.href='/signin'</script>");
     }
 %>
@@ -118,7 +112,7 @@
                     마이페이지
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#" >대여/반납 현황</a>
+
                     <a class="dropdown-item" href="/mybookreser">예약 현황</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="/userUpdate">회원 정보 수정</a>
@@ -133,18 +127,15 @@
                    <form class="needs-validation" action="/signin" method="GET">
                    <button type="button" class="btn btn-outline-primary float-right" onClick="location.href='/signin'">로그인</button>
                    </form>
-
                    <form class="needs-validation" action="/signup" method="GET">
                    <button type="button" class="btn btn-primary float-right" onClick="location.href='/signup'">회원가입</button>
                    </form>
-
                </div>--%>
         <%
             session=request.getSession();
             //session=request.getSession(true);
             Member memberInfo = (Member) session.getAttribute("member");
             if(memberInfo==null){
-
         %>
         <form class="needs-validation" action="/signin" method="GET">
             <button class="btn btn-primary float-right" type="submit">로그인</button>
@@ -159,11 +150,9 @@
             <button class="btn btn-primary float-right" type="submit">로그아웃</button>
         </form>
         <%--
-
                 <form class="needs-validation" action="/userUpdate" method="GET">
                     <button class="btn btn-primary float-right" type="submit">회원수정</button>
                 </form>
-
                 <form class="needs-validation" action="/userDelete" method="POST">
                     <button  type="submit">회원탈퇴</button>
                 </form>--%>
@@ -191,23 +180,23 @@
                     }
                     else{
                     %>
-                    <p><%=member.getName()%>님의 대출도서</p>
+                    <h3><%=member.getName()%>님의 대출도서</h3>
                     <% }%>
                     <c:forEach var="book" items="${mybook}" varStatus="status">
 
-                            <figure class="figure">
-                                <img src=${book.book_img} width="151.5", height="200" hspace="10">
-                                <figcaption class="figure-caption">
-                                    이름: ${book.book_name} <br>
-                                    저자: ${book.author}<br>
-                                    출판사: ${book.publisher}<br>
-                                </figcaption>
+                        <figure class="figure">
+                            <img src=${book.book_img} width="151.5", height="200" hspace="10">
+                            <figcaption class="figure-caption">
+                                이름: ${book.book_name} <br>
+                                저자: ${book.author}<br>
+                                출판사: ${book.publisher}<br>
+                            </figcaption>
 
-                                <form action="/bookreturncheck" method="post">
-                                      반납 : <button name="bookname" value="${book.book_name}"> 반납 </button>
-                                </form>
+                            <form action="/bookreturncheck" method="post">
+                                반납 : <button name="bookname" value="${book.book_name}"> 반납 </button>
+                            </form>
 
-                            </figure>
+                        </figure>
 
                     </c:forEach>
                 </tr>

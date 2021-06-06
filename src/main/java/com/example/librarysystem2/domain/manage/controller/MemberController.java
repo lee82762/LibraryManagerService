@@ -48,6 +48,7 @@ public class MemberController {
         else {
             session.setAttribute("member", sessionm);
         }
+
         String condition=request.getParameter("item");
 
         if(condition!=null) {
@@ -77,7 +78,6 @@ public class MemberController {
 
         //db에 email이 없을때
         if(member==null){
-
             model.addAttribute("SIGNIN_OK","failid");
         }
         //db에 email이 있을때

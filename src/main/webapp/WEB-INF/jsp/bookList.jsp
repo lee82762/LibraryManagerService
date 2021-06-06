@@ -141,7 +141,6 @@
                     마이페이지
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#" >대여/반납 현황</a>
                     <a class="dropdown-item" href="/mybookreser">예약 현황</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="/userUpdate">회원 정보 수정</a>
@@ -253,6 +252,7 @@
 
                             <figure class="figure">
                                 <img src=${book.book_img} width="151.5", height="200" hspace="10">
+
                                 <figcaption class="figure-caption">
                                     이름: ${book.book_name} <br>
                                     저자: ${book.author}<br>

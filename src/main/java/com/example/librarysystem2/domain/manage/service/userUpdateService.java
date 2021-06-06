@@ -14,9 +14,7 @@ public class userUpdateService {
     }
 
     public Member sessionchange(userUpdateDto userUpdateDto){
-
         return memberDao.selectByEmail(userUpdateDto.getEmail());
-
     }
 
 }

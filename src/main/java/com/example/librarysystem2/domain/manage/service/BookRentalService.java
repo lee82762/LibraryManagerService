@@ -9,14 +9,16 @@ public class BookRentalService {
     private BookDao bookDao;
 
     //find book_state
-    public String bookList1(String bookinfo){ return bookDao.selectfindstate(bookinfo); }
+    public String bookList1(String bookinfo){
+        return bookDao.selectfindstate(bookinfo); }
 
     //find cnt
-    public int bookList2(String bookinfo){return bookDao.selectfindcnt(bookinfo); }
+    public int bookList2(String bookinfo){
+        return bookDao.selectfindcnt(bookinfo); }
 
 
     //update 정보
     public void bookrent(String book_name,String user_id,int cnt){
-         bookDao.update(book_name,user_id,cnt);
+        bookDao.update(book_name,user_id,cnt);
     }
 }

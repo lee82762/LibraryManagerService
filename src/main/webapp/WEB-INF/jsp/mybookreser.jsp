@@ -118,7 +118,6 @@
                     마이페이지
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#" >대여/반납 현황</a>
                     <a class="dropdown-item" href="/mybookreser">예약 현황</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="/userUpdate">회원 정보 수정</a>
@@ -191,7 +190,7 @@
                     }
                     else{
                     %>
-                    <p><%=member.getName()%>님의 예약도서</p>
+                    <h3><%=member.getName()%>님의 예약도서</h3>
                     <% }%>
                     <c:forEach var="book" items="${mybook}" varStatus="status">
 

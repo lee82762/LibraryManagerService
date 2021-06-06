@@ -14,7 +14,6 @@ public class signUpService {
     public boolean check(signUpDto signUpDto){
         boolean already=false;
         Member member=memberDao.selectByEmail(signUpDto.getEmail());
-
         if(member==null){
             already=true;
         }
