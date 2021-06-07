@@ -156,11 +156,9 @@ public class BookController {
         model.addAttribute("booklist2",bookList);
         model.addAttribute("CHECK_OK","success");
         return "booksearchcheck";
-
-
     }
 
-    //도서 장르별  리스트 검색
+    //도서 장르별 도서정보 검색
     @PostMapping("/check1")
     public String bookSearch2(Model model, HttpServletRequest request){
         String genre=request.getParameter("item");
